@@ -3,7 +3,9 @@
 at all
 
 # 2. 특정 파일 제외하기
+3D Objects/
 desktop.ini
 
 # 3. 특정 확장자 전체 제외하기 (예: 모든 zip 파일)
+3D Objects/
 *.zip
