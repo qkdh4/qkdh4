@@ -20,7 +20,7 @@ cd py311/test
 python -m venv .venv
 # Windows: .venv\Scripts\activate / mac·Linux: source .venv/bin/activate
 pip install -r requirements.txt
-python run_pipeline.py   # 1) 수집+분석 (data/ 에 CSV 저장)
+python test/test/run_pipeline.py   # 1) 수집+분석 (data/ 에 CSV 저장)
 python app.py            # 2) 서버 구동 -> http://localhost:8000
 ```
 > FinanceDataReader/네트워크가 없으면 샘플 데이터로 자동 대체되어 화면이 먼저 동작합니다(상단 경고 표시). 실데이터 환경에서는 자동으로 교체됩니다.
