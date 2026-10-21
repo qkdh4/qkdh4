@@ -1,0 +1,37 @@
+{
+  "latest_date": "2026-10-21",
+  "prev_date": "2026-10-14",
+  "benchmark": "KODEX 200 (코스피200)",
+  "group_counts": {
+    "횡보": 145,
+    "하향": 52,
+    "상향": 3
+  },
+  "avg_norm": -0.27171813722810756,
+  "total_contribution_bp": 13.411779616160764,
+  "changed_count": 84,
+  "transition_matrix": {
+    "UP": {
+      "UP": 0,
+      "SIDE": 21,
+      "DOWN": 4
+    },
+    "SIDE": {
+      "UP": 3,
+      "SIDE": 114,
+      "DOWN": 46
+    },
+    "DOWN": {
+      "UP": 0,
+      "SIDE": 10,
+      "DOWN": 2
+    }
+  },
+  "meta": {
+    "source": "SAMPLE(폴백)",
+    "benchmark": "069500",
+    "collected_at": "2026-10-21 06:57:42.357433",
+    "n_stocks": 200,
+    "is_sample": true
+  }
+}

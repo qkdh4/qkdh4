@@ -1,0 +1,20 @@
+name: Update KOSPI Dashboard
+on:
+  schedule: [{cron: "30 8 * * 1-5"}]  # 평일 17:30 KST (08:30 UTC) 장마감 후
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r test/requirements.txt
+        working-directory: .
+      - run: python run_pipeline.py && python export_static.py
+        working-directory: test
+      - run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add test/data test/docs
+          git diff --cached --quiet || (git commit -m "auto: 데이터 갱신" && git push)

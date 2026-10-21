@@ -1,0 +1,41 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>코스피200 상대강도·영향력 대시보드</title>
+<style>body{font-family:system-ui,'Malgun Gothic',sans-serif;margin:0;background:#0f172a;color:#e2e8f0}header{padding:20px 24px;background:#1e293b}h1{margin:0;font-size:22px}.sub{color:#94a3b8}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;padding:16px 24px}.card{background:#1e293b;border-radius:12px;padding:16px}.card b{font-size:26px;display:block}.up{color:#f87171}.down{color:#60a5fa}.side{color:#a3a3a3}section{padding:8px 24px 20px}table{width:100%;border-collapse:collapse;background:#1e293b;border-radius:10px;overflow:hidden}th,td{padding:8px 10px;text-align:right;font-size:13px}th{background:#334155}td:first-child,th:first-child,td:nth-child(2),th:nth-child(2){text-align:left}tr:nth-child(even){background:#243044}input,select,button{background:#334155;color:#fff;border:0;padding:8px 12px;border-radius:8px}canvas{background:#1e293b;border-radius:12px;width:100%}.badge{padding:2px 8px;border-radius:99px;background:#475569}.warn{color:#fbbf24}</style></head>
+<body><header><h1>📈 코스피200(KODEX 200) 기준 상대강도 · 영향력 분석</h1>
+<p class="sub">코스피 시총 상위 200종목 | 당일 등락률 정규화(벤치마크 초과수익률 z-score) → 상향/횡보/하향 그룹화 · 시총·거래대금 기반 영향력 · 그룹 전이 추적</p>
+<p id="meta"></p><button onclick="refresh()">🔄 데이터 새로 수집</button></header>
+
+<div class="cards" id="cards"></div>
+<section><h2>그룹 분포 시계열 (상향/횡보/하향 종목 수)</h2><canvas id="chart" height="220"></canvas></section>
+<section><h2>🔥 영향력 TOP 15 (코스피에 미치는 영향)</h2><div id="influence"></div></section>
+<section><h2>🔀 그룹 전이 (5거래일 전 → 현재) — 변화 종목</h2><div id="matrix"></div><div id="changed"></div></section>
+<section><h2>종목 목록</h2>
+<select id="grp"><option value="">전체 그룹</option><option value="UP">상향</option><option value="SIDE">횡보</option><option value="DOWN">하향</option></select>
+<input id="q" placeholder="종목명/코드 검색"><div id="stocks" style="margin-top:10px"></div></section>
+
+<script>/*__STATIC_DATA__*/
+const S=window.STATIC_DATA||null;
+async function get(p){ if(S){ if(p.includes('summary'))return S.summary; if(p.includes('influence'))return S.stocks.slice(0,15); if(p.includes('transitions'))return {matrix:S.summary.transition_matrix,changed:S.stocks.filter(x=>x.changed)}; if(p.includes('group_time'))return S.group_ts; if(p.includes('stocks')){let d=S.stocks; const g=new URLSearchParams(p.split('?')[1]||''); if(g.get('group'))d=d.filter(x=>x.group==g.get('group')); if(g.get('q'))d=d.filter(x=>(x.Name+x.Code).includes(g.get('q'))); return d;} } const r=await fetch(p); return r.json(); }
+const pct=x=>(x*100).toFixed(2)+'%';
+function table(rows,cols){return `<table><tr>${cols.map(c=>`<th>${c[1]}</th>`).join('')}</tr>${rows.map(r=>`<tr>${cols.map(c=>`<td>${c[2]?c[2](r[c[0]],r):r[c[0]]}</td>`).join('')}</tr>`).join('')}</table>`}
+let stocksCache=[];
+async function load(){
+ const sm=await get('/api/summary'); const gc=sm.group_counts||{};
+ document.getElementById('meta').innerHTML=`기준일 ${sm.latest_date} · 데이터출처 ${sm.meta?.source||''} ${sm.meta?.is_sample?'<span class=warn>⚠ 샘플데이터(fdr 미설치/네트워크 없음) — pip install 후 새로고침하면 실데이터로 교체됩니다</span>':''}`;
+ document.getElementById('cards').innerHTML=[['상향',gc['상향']||0,'up'],['횡보',gc['횡보']||0,'side'],['하향',gc['하향']||0,'down'],['그룹변화 종목',sm.changed_count,''],['합산 지수기여도',sm.total_contribution_bp?.toFixed(1)+' bp','']].map(x=>`<div class=card><span>${x[0]}</span><b class=${x[2]}>${x[1]}</b></div>`).join('');
+ const inf=await get('/api/influence');
+ document.getElementById('influence').innerHTML=table(inf,[['Name','종목'],['Code','코드'],['influence_score','영향력점수',v=>v.toFixed(1)],['w_mcap','시총비중',v=>pct(v)],['w_volume','거래대금비중',v=>pct(v)],['contribution_bp','기여도(bp)',v=>v.toFixed(2)],['group_kr','그룹'],['ret','당일등락',v=>pct(v)]]);
+ const tr=await get('/api/transitions'); const m=tr.matrix;
+ document.getElementById('matrix').innerHTML=table(Object.entries(m).map(([k,v])=>({from:k,...v})),[['from','이전 \\ 현재'],['UP','→상향'],['SIDE','→횡보'],['DOWN','→하향']]);
+ document.getElementById('changed').innerHTML=tr.changed.length?table(tr.changed,[['Name','종목'],['transition','전이'],['norm_score','정규화점수',v=>v.toFixed(2)],['influence_score','영향력',v=>v.toFixed(1)],['ret','당일등락',v=>pct(v)]]):'변화 종목 없음';
+ stocksCache=await get('/api/stocks'); renderStocks(stocksCache);
+ draw(await get('/api/group_timeseries'));
+}
+function renderStocks(d){document.getElementById('stocks').innerHTML=table(d.slice(0,200),[['Name','종목'],['Code','코드'],['Close','종가',v=>Number(v).toLocaleString()],['ret','당일등락',v=>pct(v)],['excess','초과수익',v=>pct(v)],['norm_score','정규화',v=>v.toFixed(2)],['group_kr','그룹'],['transition','전이(5일)'],['contribution_bp','기여도(bp)',v=>v.toFixed(2)],['influence_score','영향력',v=>v.toFixed(1)]])}
+async function filter(){const g=document.getElementById('grp').value,q=document.getElementById('q').value; renderStocks(await get(`/api/stocks?group=${g}&q=${encodeURIComponent(q)}`))}
+document.getElementById('grp').onchange=filter; document.getElementById('q').oninput=filter;
+async function refresh(){ if(S){alert('정적(GitHub Pages) 모드에서는 새로고침할 수 없습니다. 로컬 서버에서 실행하세요.');return;} await fetch('/api/refresh',{method:'POST'}); _cacheClear(); load(); }
+function _cacheClear(){}
+function draw(data){const c=document.getElementById('chart'),x=c.getContext('2d');c.width=c.clientWidth;c.height=220;const max=200;const cols={UP:'#f87171',SIDE:'#a3a3a3',DOWN:'#60a5fa'};['UP','SIDE','DOWN'].forEach(k=>{x.strokeStyle=cols[k];x.beginPath();data.forEach((d,i)=>{const px=i/(data.length-1)*c.width,py=200-(d[k]/max*180);i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();x.fillStyle=cols[k];x.fillText(k,10,20+Object.keys(cols).indexOf(k)*16)});}
+load();
+</script></body></html>
