@@ -2,6 +2,8 @@
 3D Objects/
 at all
 GwangsangWebAPP
+yolo/*
+!yolo/03-TEST/
 
 # 2. 특정 파일 제외하기
 desktop.ini
