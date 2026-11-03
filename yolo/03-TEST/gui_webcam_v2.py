@@ -8,7 +8,7 @@ import cv2
 from ultralytics import YOLO
 
 # 스크립트 위치를 기준으로 위쪽 폴더에서 모델 파일을 찾는다
-model_path = Path(__file__).resolve().parents[2] / "yolo26n.pt"
+model_path = Path(__file__).resolve().parents[1] / "yolo26n.pt"
 # 사용할 YOLO 모델을 읽는다
 model = YOLO(str(model_path))
 
