@@ -4,6 +4,7 @@ at all
 GwangsangWebAPP
 yolo/*
 !yolo/03-TEST/
+!yolo/yolo26n.pt
 
 # 2. 특정 파일 제외하기
 desktop.ini
