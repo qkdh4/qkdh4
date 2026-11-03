@@ -1,6 +1,6 @@
-# YOLO 웹캠 사물인식 2가지 프로그램
+# YOLO 웹캠 사물인식 프로그램 모음
 
-이 폴더에는 YOLO와 OpenCV를 사용하여 웹캠 영상을 실시간으로 분석하는 두 프로그램이 있습니다.
+이 폴더에는 YOLO와 OpenCV를 사용하여 웹캠 영상을 실시간으로 분석하는 프로그램들이 있습니다.
 두 프로그램 모두 한 단계 위 폴더의 `yolo26n.pt` 모델 파일을 사용합니다.
 
 ## 준비 사항
@@ -90,3 +90,34 @@ C:\Users\504\miniconda3\envs\yolo\python.exe gui_webcam_v2.py
 ```text
 C:\Users\<사용자>\Downloads\yolo_snapshot_YYYYMMDD_HHMMSS.jpg
 ```
+
+## 3. 웹앱 프로그램
+
+파일: [webapp_webcam.py](./webapp_webcam.py)
+
+기본 GUI 버전의 기능을 웹 브라우저에서 동일하게 볼 수 있도록 만든 Flask 기반 웹앱입니다.
+브라우저 주소로 접속하면 실시간 웹캠 영상을 바로 확인할 수 있습니다.
+
+### 실행
+
+```powershell
+cd "C:\Users\504\3D Objects\yolo\03-TEST"
+C:\Users\504\miniconda3\envs\yolo\python.exe webapp_webcam.py
+```
+
+그다음 브라우저에서 다음 주소로 접속합니다.
+
+```text
+http://127.0.0.1:5000
+```
+
+### 기능
+
+- 실시간 웹캠 영상을 브라우저에서 표시
+- YOLO로 객체 인식 결과를 영상에 덧그리기
+- `/` 페이지에서 메인 화면 제공
+- `/video` 스트림으로 MJPEG 영상 전송
+
+### 종료 방법
+
+터미널에서 `Ctrl + C`를 눌러 프로세스를 종료하면 됩니다.
