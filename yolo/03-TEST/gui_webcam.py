@@ -2,11 +2,17 @@
 import cv2
 # ultralytics에서 사물인식 AI인 YOLO를 불러온다
 from ultralytics import YOLO
+from pathlib import Path
 
 # 사용할 YOLO 모델 파일을 읽어 AI를 준비한다
-model = YOLO("yolo26n.pt")
+model_path = Path(__file__).resolve().parents[1] / "yolo26n.pt"
+if not model_path.is_file():
+    raise FileNotFoundError(f"YOLO 모델 파일을 찾을 수 없습니다: {model_path}")
+model = YOLO(str(model_path))
 # 노트북의 기본 웹캠인 0번 카메라를 연다
 camera = cv2.VideoCapture(0)
+if not camera.isOpened():
+    raise RuntimeError("0번 웹캠을 열 수 없습니다.")
 
 # 카메라가 정상적으로 열려 있는 동안 계속 반복한다
 while camera.isOpened():
