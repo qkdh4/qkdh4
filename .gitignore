@@ -2,12 +2,17 @@
 3D Objects/
 at all
 GwangsangWebAPP
-yolo/*
-!yolo/03-TEST/
-!yolo/yolo26n.pt
+# yolo/*
+# !yolo/03-TEST/
+# !yolo/yolo26n.pt
+yolo
+project/sample/
 
 # 2. 특정 파일 제외하기
 desktop.ini
+# project/sample/sample_file.pdf
+# project/sample/sleep/a.txt
+# project/sample/face/b.txt
 
 # 3. 특정 확장자 전체 제외하기 (예: 모든 zip 파일)
 *.zip
