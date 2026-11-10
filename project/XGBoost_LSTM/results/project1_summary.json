@@ -1,0 +1,15 @@
+{
+  "font_used": "Malgun Gothic",
+  "metrics": {
+    "LSTM": {
+      "MAE": 31.061334134239353,
+      "RMSE": 41.824081604185196
+    },
+    "XGBoost": {
+      "MAE": 32.483220892585386,
+      "RMSE": 44.19125527742924
+    }
+  },
+  "best_model_by_rmse": "LSTM",
+  "interpretation": "RMSE 기준으로 LSTM 모델이 더 안정적으로 AQI 변동을 추적했습니다. 예측선이 실제선의 급격한 피크/급락을 얼마나 따라가는지 함께 확인하세요."
+}

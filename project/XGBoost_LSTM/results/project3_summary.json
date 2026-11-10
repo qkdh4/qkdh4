@@ -1,0 +1,32 @@
+{
+  "font_used": "Malgun Gothic",
+  "pm25_metrics": [
+    {
+      "method": "KNN (k=5)",
+      "MAE": 0.12185344827586192,
+      "RMSE": 0.5700691881783686
+    },
+    {
+      "method": "Linear",
+      "MAE": 13.17155172413793,
+      "RMSE": 17.718285168445192
+    },
+    {
+      "method": "Polynomial",
+      "MAE": 14.13092490254632,
+      "RMSE": 19.58056462913318
+    },
+    {
+      "method": "Spline",
+      "MAE": 14.547720935076338,
+      "RMSE": 19.886626357111815
+    },
+    {
+      "method": "Forward Fill",
+      "MAE": 18.75926724137931,
+      "RMSE": 26.77591779392252
+    }
+  ],
+  "best_method_by_rmse": "KNN (k=5)",
+  "interpretation": "PM2.5 기준 RMSE가 가장 낮은 방법은 KNN (k=5)입니다. 오차 막대그래프에서 MAE/RMSE가 낮을수록 결측값 복원 성능이 좋다고 해석합니다."
+}

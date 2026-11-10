@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AQI 학습 가이드</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="nav-row">
+          <h1>학습 가이드</h1>
+          <a class="nav-link" href="/">예측 대시보드</a>
+        </div>
+        <p class="muted">예측/이상치/보간 결과를 실제 화면과 함께 학습합니다.</p>
+      </aside>
+
+      <main class="main">
+        <section class="panel content-article">
+          <h2>1) 예측 분석</h2>
+          <p>과거 AQI 패턴을 학습해 다음 기간 AQI를 추정합니다. 실제선과 예측선이 가까울수록 모델이 시계열 패턴을 잘 잡았다고 볼 수 있습니다.</p>
+          <h3>체크 포인트</h3>
+          <ul>
+            <li>급등/급락 구간에서 오차가 커지는지 확인</li>
+            <li>RMSE가 큰 경우 불확실성 밴드가 넓어짐</li>
+          </ul>
+          <img src="/results/next_aqi_forecast.png" alt="AQI 예측 그래프" style="width:100%;border-radius:10px;border:1px solid #e2e8f0;" />
+        </section>
+
+        <section class="panel content-article" style="margin-top:14px;">
+          <h2>2) 이상치 탐지</h2>
+          <p>Autoencoder와 Isolation Forest를 함께 사용해 비정상 구간을 탐지합니다. 두 모델이 동시에 탐지한 구간은 우선 점검 대상입니다.</p>
+          <h3>체크 포인트</h3>
+          <ul>
+            <li>이상도 점수 임계치 상회 구간 확인</li>
+            <li>합의 이상치의 시점과 실제 AQI 급변 여부 대조</li>
+          </ul>
+          <img src="/results/project2_anomalies.png" alt="이상치 탐지 그래프" style="width:100%;border-radius:10px;border:1px solid #e2e8f0;" />
+        </section>
+
+        <section class="panel content-article" style="margin-top:14px;">
+          <h2>3) 결측치 보간</h2>
+          <p>여러 보간 기법을 동일 데이터에서 비교하여 MAE/RMSE가 가장 낮은 방법을 선택합니다.</p>
+          <h3>체크 포인트</h3>
+          <ul>
+            <li>원본 대비 보간선의 패턴 보존 여부</li>
+            <li>오차 막대그래프에서 과도한 방법 배제</li>
+          </ul>
+          <img src="/results/project3_imputation.png" alt="결측치 보간 그래프" style="width:100%;border-radius:10px;border:1px solid #e2e8f0;margin-bottom:10px;" />
+          <img src="/results/project3_errors.png" alt="결측치 보간 오차 그래프" style="width:100%;border-radius:10px;border:1px solid #e2e8f0;" />
+        </section>
+      </main>
+    </div>
+  </body>
+  </html>

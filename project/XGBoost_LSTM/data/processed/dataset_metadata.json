@@ -1,0 +1,31 @@
+{
+  "source_urls": {
+    "Delhi": "https://raw.githubusercontent.com/cp099/India-Air-Quality-Dataset/main/Delhi_AQI_Dataset.csv"
+  },
+  "cities": {
+    "Delhi": {
+      "rows": 2191,
+      "start_date": "2018-01-01",
+      "end_date": "2024-12-31",
+      "features": [
+        "PM2.5",
+        "PM10",
+        "NO2",
+        "SO2",
+        "CO",
+        "O3",
+        "AQI"
+      ]
+    }
+  },
+  "target": "AQI",
+  "features": [
+    "PM2.5",
+    "PM10",
+    "NO2",
+    "SO2",
+    "CO",
+    "O3",
+    "AQI"
+  ]
+}

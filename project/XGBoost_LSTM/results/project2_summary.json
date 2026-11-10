@@ -1,0 +1,14 @@
+{
+  "font_used": "Malgun Gothic",
+  "anomaly_counts": {
+    "autoencoder": 22,
+    "isolation_forest": 22,
+    "consensus": 0
+  },
+  "ratios": {
+    "autoencoder_pct": 5.034324942791762,
+    "isolation_forest_pct": 5.034324942791762,
+    "consensus_pct_of_test": 0.0
+  },
+  "interpretation": "두 모델이 동시에 탐지한 구간(합의 이상치)은 신뢰도가 높은 이벤트로 볼 수 있습니다. 한쪽 모델만 탐지한 경우는 센서 노이즈 또는 경계 사례일 수 있어 추가 확인이 필요합니다."
+}
