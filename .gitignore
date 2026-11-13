@@ -9,6 +9,7 @@ yolo
 project/sample/
 project/XGBoost_LSTM/guide
 project/AutoGluon/models/
+test
 
 # 2. 특정 파일 및 폴더 제외하기
 desktop.ini

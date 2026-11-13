@@ -129,6 +129,16 @@ def render_streamlit_app() -> None:
         city = st.selectbox("도시", SUPPORTED_CITIES, index=0, key="city")
         horizon = st.number_input("예측 일수", min_value=1, max_value=30, value=7, step=1, key="horizon")
         heavy_mode = st.toggle("최대 조합 모드", value=True, key="heavy_mode")
+        uniform_mode = st.toggle("균일 모델수 모드", value=True, key="uniform_mode")
+        uniform_variants = st.number_input(
+            "모델군별 변형 개수",
+            min_value=1,
+            max_value=10,
+            value=2,
+            step=1,
+            key="uniform_variants",
+            disabled=not uniform_mode,
+        )
 
         if heavy_mode:
             train_hours = st.number_input("최대 학습 시간 (시간)", min_value=1, max_value=72, value=8, step=1, key="train_hours")
@@ -175,6 +185,8 @@ def render_streamlit_app() -> None:
                 train_seconds=int(train_hours) * 3600,
                 num_val_windows=int(num_val_windows),
                 num_hpo_trials=int(num_hpo_trials),
+                uniform_model_budget=bool(uniform_mode),
+                uniform_variants_per_family=int(uniform_variants),
                 progress_callback=callback,
                 log_path=log_path,
                 presets="best_quality",

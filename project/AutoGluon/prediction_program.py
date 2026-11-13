@@ -35,6 +35,19 @@ AQI_BANDS = [
     {"min": 301, "max": 500, "label": "위험", "color": "#7F1D1D", "advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요."},
 ]
 
+UNIFORM_MODEL_FAMILIES: list[str] = [
+    "SeasonalNaive",
+    "AutoETS",
+    "DynamicOptimizedTheta",
+    "ETS",
+    "Theta",
+    "NPTS",
+    "RecursiveTabular",
+    "DirectTabular",
+    "DeepAR",
+    "TemporalFusionTransformer",
+]
+
 
 def _import_autogluon():
     if sys.version_info >= (3, 12):
@@ -161,6 +174,17 @@ def _build_fast_hyperparameters() -> dict[str, Any]:
     }
 
 
+def _build_uniform_hyperparameters(variants_per_family: int = 2) -> dict[str, list[dict[str, Any]]]:
+    safe_variants = max(1, int(variants_per_family))
+    hyperparameters: dict[str, list[dict[str, Any]]] = {}
+    for family in UNIFORM_MODEL_FAMILIES:
+        variants: list[dict[str, Any]] = []
+        for idx in range(1, safe_variants + 1):
+            variants.append({"ag_args": {"name_suffix": f"U{idx:02d}"}})
+        hyperparameters[family] = variants
+    return hyperparameters
+
+
 def _build_fit_log_payload(fit_kwargs: dict[str, Any], hyperparameter_mode: str) -> dict[str, Any]:
     payload = {
         "presets": fit_kwargs.get("presets"),
@@ -178,6 +202,8 @@ def run_prediction(
     train_seconds: int | None = 28800,
     num_val_windows: int = 5,
     num_hpo_trials: int = 1000,
+    uniform_model_budget: bool = True,
+    uniform_variants_per_family: int = 2,
     progress_callback: Callable[[str], None] | None = None,
     log_path: str | Path | None = None,
     presets: str = "best_quality",
@@ -221,22 +247,33 @@ def run_prediction(
             progress_callback,
             resolved_log_path,
         )
+    if uniform_model_budget and use_hpo:
+        _notify(
+            "균일 모델수 모드가 활성화되어 HPO를 비활성화합니다.",
+            progress_callback,
+            resolved_log_path,
+        )
+        use_hpo = False
     if use_hpo:
         os.environ.setdefault("RAY_TRAIN_ENABLE_V2_MIGRATION_WARNINGS", "0")
+
     short_run_mode = train_seconds is not None and train_seconds < 900
-    if short_run_mode and not use_hpo:
+    if short_run_mode and not use_hpo and not uniform_model_budget:
         _notify(
             "짧은 시간 제한 감지: 무거운 사전학습 모델을 제외한 경량 모델셋으로 실행합니다.",
             progress_callback,
             resolved_log_path,
         )
 
-    hyperparameters = (
-        _build_fast_hyperparameters()
-        if short_run_mode and not use_hpo
-        else _build_hyperparameters(use_hpo=use_hpo)
-    )
-    hyperparameter_mode = "search_space" if use_hpo else ("fast_model_set" if short_run_mode else "default")
+    if uniform_model_budget:
+        hyperparameters = _build_uniform_hyperparameters(variants_per_family=uniform_variants_per_family)
+        hyperparameter_mode = "uniform_model_budget"
+    elif short_run_mode and not use_hpo:
+        hyperparameters = _build_fast_hyperparameters()
+        hyperparameter_mode = "fast_model_set"
+    else:
+        hyperparameters = _build_hyperparameters(use_hpo=use_hpo)
+        hyperparameter_mode = "search_space" if use_hpo else "default"
 
     fit_kwargs = {
         "train_data": train_data,
@@ -385,10 +422,13 @@ def run_prediction(
         "forecast_horizon_days": horizon,
         "training_options": {
             "presets": presets,
-            "hyperparameters": "search_space" if hpo_effective else ("fast_model_set" if short_run_mode else "default"),
+            "hyperparameters": hyperparameter_mode if not hpo_effective else "search_space",
             "time_limit_seconds": train_seconds,
             "num_val_windows": num_val_windows,
             "num_hpo_trials": num_hpo_trials if hpo_effective else 0,
+            "uniform_model_budget": uniform_model_budget,
+            "uniform_family_count": len(UNIFORM_MODEL_FAMILIES) if uniform_model_budget else 0,
+            "uniform_variants_per_family": uniform_variants_per_family if uniform_model_budget else 0,
         },
         "validation_metrics": {
             "holdout_mae": holdout_mae,

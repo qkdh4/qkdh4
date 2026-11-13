@@ -3,76 +3,79 @@
   "forecast_horizon_days": 7,
   "training_options": {
     "presets": "best_quality",
-    "hyperparameters": "search_space",
-    "time_limit_seconds": 28800,
+    "hyperparameters": "uniform_model_budget",
+    "time_limit_seconds": 1800,
     "num_val_windows": 5,
-    "num_hpo_trials": 1000
+    "num_hpo_trials": 0,
+    "uniform_model_budget": true,
+    "uniform_family_count": 10,
+    "uniform_variants_per_family": 3
   },
   "validation_metrics": {
-    "holdout_mae": 170.6487801580718,
-    "holdout_rmse": 190.52729121934692
+    "holdout_mae": 102.56133085927242,
+    "holdout_rmse": 128.13185554196843
   },
-  "best_model": "DeepAR\\63106_00066",
-  "models_trained": 313,
+  "best_model": "RecursiveTabularU03",
+  "models_trained": 31,
   "ensemble_models": [
     "WeightedEnsemble"
   ],
   "next_predictions": [
     {
       "date": "2025-01-01",
-      "predicted_aqi": 289.0151872394061,
+      "predicted_aqi": 288.52233155627084,
       "grade": "매우 나쁨",
       "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
       "grade_color": "#8E44AD"
     },
     {
       "date": "2025-01-02",
-      "predicted_aqi": 304.5414798042991,
-      "grade": "위험",
-      "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
-      "grade_color": "#7F1D1D"
+      "predicted_aqi": 289.3941956358364,
+      "grade": "매우 나쁨",
+      "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
+      "grade_color": "#8E44AD"
     },
     {
       "date": "2025-01-03",
-      "predicted_aqi": 301.5970573256714,
-      "grade": "위험",
-      "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
-      "grade_color": "#7F1D1D"
+      "predicted_aqi": 287.6859305442,
+      "grade": "매우 나쁨",
+      "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
+      "grade_color": "#8E44AD"
     },
     {
       "date": "2025-01-04",
-      "predicted_aqi": 299.32660235299005,
+      "predicted_aqi": 286.48441745763597,
       "grade": "매우 나쁨",
       "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
       "grade_color": "#8E44AD"
     },
     {
       "date": "2025-01-05",
-      "predicted_aqi": 297.30237507579307,
+      "predicted_aqi": 283.06316446264725,
       "grade": "매우 나쁨",
       "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
       "grade_color": "#8E44AD"
     },
     {
       "date": "2025-01-06",
-      "predicted_aqi": 312.68633794784546,
-      "grade": "위험",
-      "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
-      "grade_color": "#7F1D1D"
+      "predicted_aqi": 284.0634496681082,
+      "grade": "매우 나쁨",
+      "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
+      "grade_color": "#8E44AD"
     },
     {
       "date": "2025-01-07",
-      "predicted_aqi": 318.58168438468323,
-      "grade": "위험",
-      "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
-      "grade_color": "#7F1D1D"
+      "predicted_aqi": 284.3808760628031,
+      "grade": "매우 나쁨",
+      "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
+      "grade_color": "#8E44AD"
     }
   ],
   "artifacts": {
     "forecast_csv": "C:\\Users\\504\\3D Objects\\project\\AutoGluon\\results\\next_aqi_forecast.csv",
     "forecast_png": "C:\\Users\\504\\3D Objects\\project\\AutoGluon\\results\\next_aqi_forecast.png",
     "leaderboard_csv": "C:\\Users\\504\\3D Objects\\project\\AutoGluon\\results\\model_leaderboard.csv",
-    "model_path": "C:\\Users\\504\\3D Objects\\project\\AutoGluon\\models\\autogluon_timeseries_delhi_20261112_105738",
+    "model_path": "C:\\Users\\504\\3D Objects\\project\\AutoGluon\\models\\autogluon_timeseries_delhi_20261113_094454",
     "run_log": "C:\\Users\\504\\3D Objects\\project\\AutoGluon\\results\\training_run.log"
   },
   "interpretation": "AutoGluon TimeSeries가 다양한 시계열 모델/하이퍼파라미터 조합을 탐색하고 성능 상위 모델을 자동 앙상블했습니다.",
@@ -122,454 +125,283 @@
   ],
   "top_leaderboard": [
     {
-      "model": "DeepAR\\63106_00066",
-      "score_test": -71.36573388854316,
-      "score_val": -85.19542067722759,
-      "pred_time_test": 0.05927920341491699,
-      "pred_time_val": 0.11620259284973145,
-      "fit_time_marginal": 499.83169412612915,
-      "fit_order": 162
-    },
-    {
-      "model": "DeepAR\\63106_00181",
-      "score_test": -72.47190498649137,
-      "score_val": -73.02279117959287,
-      "pred_time_test": 0.04856252670288086,
-      "pred_time_val": 0.14760065078735352,
-      "fit_time_marginal": 456.3087978363037,
-      "fit_order": 277
-    },
-    {
-      "model": "DeepAR\\63106_00158",
-      "score_test": -82.73422868615181,
-      "score_val": -69.15135773240443,
-      "pred_time_test": 0.06423759460449219,
-      "pred_time_val": 0.1826622486114502,
-      "fit_time_marginal": 937.3648030757904,
-      "fit_order": 254
-    },
-    {
-      "model": "DeepAR\\63106_00033",
-      "score_test": -85.92107640205806,
-      "score_val": -94.12786294130458,
-      "pred_time_test": 0.04007744789123535,
-      "pred_time_val": 0.10124826431274414,
-      "fit_time_marginal": 297.0775890350342,
-      "fit_order": 129
-    },
-    {
-      "model": "DeepAR\\63106_00078",
-      "score_test": -87.09971626260455,
-      "score_val": -78.94653280062809,
-      "pred_time_test": 0.06077122688293457,
-      "pred_time_val": 0.13065123558044434,
-      "fit_time_marginal": 489.2933204174042,
-      "fit_order": 174
-    },
-    {
-      "model": "DeepAR\\63106_00087",
-      "score_test": -87.30658702620406,
-      "score_val": -74.70340447915348,
-      "pred_time_test": 0.0735771656036377,
-      "pred_time_val": 0.24135303497314453,
-      "fit_time_marginal": 1643.4123508930206,
-      "fit_order": 183
-    },
-    {
-      "model": "DeepAR\\63106_00113",
-      "score_test": -89.52935559815079,
-      "score_val": -75.67049660795915,
-      "pred_time_test": 0.04381132125854492,
-      "pred_time_val": 0.13164997100830078,
-      "fit_time_marginal": 482.4704074859619,
-      "fit_order": 209
-    },
-    {
-      "model": "RecursiveTabular",
+      "model": "RecursiveTabularU03",
       "score_test": -89.99460539591104,
       "score_val": -85.16889335600271,
-      "pred_time_test": 0.09423303604125977,
-      "pred_time_val": 0.08318591117858887,
-      "fit_time_marginal": 3.437861919403076,
-      "fit_order": 2
+      "pred_time_test": 0.09675455093383789,
+      "pred_time_val": 0.0969688892364502,
+      "fit_time_marginal": 3.5708460807800293,
+      "fit_order": 6
     },
     {
-      "model": "DeepAR\\63106_00063",
-      "score_test": -93.23530802982181,
-      "score_val": -88.6313852319714,
-      "pred_time_test": 0.09905171394348145,
-      "pred_time_val": 0.3061833381652832,
-      "fit_time_marginal": 2251.853234052658,
-      "fit_order": 159
+      "model": "RecursiveTabularU02",
+      "score_test": -89.99460539591104,
+      "score_val": -85.16889335600271,
+      "pred_time_test": 0.09486889839172363,
+      "pred_time_val": 0.09012699127197266,
+      "fit_time_marginal": 3.4517855644226074,
+      "fit_order": 5
     },
     {
-      "model": "DeepAR\\63106_00193",
-      "score_test": -95.17904763080284,
-      "score_val": -62.29125761323799,
-      "pred_time_test": 0.06896114349365234,
-      "pred_time_val": 0.11070370674133301,
-      "fit_time_marginal": 657.2816326618195,
-      "fit_order": 289
+      "model": "RecursiveTabularU01",
+      "score_test": -89.99460539591104,
+      "score_val": -85.16889335600271,
+      "pred_time_test": 0.09213709831237793,
+      "pred_time_val": 0.09021162986755371,
+      "fit_time_marginal": 3.564241409301758,
+      "fit_order": 4
     },
     {
-      "model": "DeepAR\\63106_00100",
-      "score_test": -95.86900336403843,
-      "score_val": -72.53730997092522,
-      "pred_time_test": 0.056967735290527344,
-      "pred_time_val": 0.145613431930542,
-      "fit_time_marginal": 572.3429129123688,
-      "fit_order": 196
+      "model": "NPTSU03",
+      "score_test": -98.11186043054559,
+      "score_val": -128.4622794940551,
+      "pred_time_test": 0.13469862937927246,
+      "pred_time_val": 0.11868977546691895,
+      "fit_time_marginal": 0.5257041454315186,
+      "fit_order": 15
     },
     {
-      "model": "DeepAR\\63106_00067",
-      "score_test": -96.16764986589386,
-      "score_val": -76.56900769371904,
-      "pred_time_test": 0.06735920906066895,
-      "pred_time_val": 0.16156673431396484,
-      "fit_time_marginal": 802.5596227645874,
-      "fit_order": 163
-    },
-    {
-      "model": "DeepAR\\63106_00203",
-      "score_test": -96.18726463427824,
-      "score_val": -91.07449215257896,
-      "pred_time_test": 0.04977059364318848,
-      "pred_time_val": 0.11675882339477539,
-      "fit_time_marginal": 388.5465223789215,
-      "fit_order": 299
-    },
-    {
-      "model": "DeepAR\\63106_00115",
-      "score_test": -96.90418882026702,
-      "score_val": -77.66431867576298,
-      "pred_time_test": 0.07190227508544922,
-      "pred_time_val": 0.18051910400390625,
-      "fit_time_marginal": 993.0202434062958,
-      "fit_order": 211
-    },
-    {
-      "model": "DirectTabular",
-      "score_test": -99.21351403539516,
-      "score_val": -79.74325074561219,
-      "pred_time_test": 0.12579917907714844,
-      "pred_time_val": 0.13335919380187988,
-      "fit_time_marginal": 3.1637048721313477,
-      "fit_order": 3
-    },
-    {
-      "model": "DeepAR\\63106_00083",
-      "score_test": -99.25305891658263,
-      "score_val": -89.78749817334126,
-      "pred_time_test": 0.048372507095336914,
-      "pred_time_val": 0.12267804145812988,
-      "fit_time_marginal": 445.9036297798157,
-      "fit_order": 179
-    },
-    {
-      "model": "DeepAR\\63106_00056",
-      "score_test": -100.11488105617889,
-      "score_val": -81.18655081261241,
-      "pred_time_test": 0.04530048370361328,
-      "pred_time_val": 0.10073018074035645,
-      "fit_time_marginal": 378.3118953704834,
-      "fit_order": 152
-    },
-    {
-      "model": "DeepAR\\63106_00004",
-      "score_test": -101.22812497507415,
-      "score_val": -83.26353899016269,
-      "pred_time_test": 0.046898841857910156,
-      "pred_time_val": 0.11668848991394043,
-      "fit_time_marginal": 505.141969203949,
-      "fit_order": 100
-    },
-    {
-      "model": "TemporalFusionTransformer\\8ac13_00149",
-      "score_test": -102.74704936155543,
-      "score_val": -56.16655754322774,
-      "pred_time_test": 0.08964300155639648,
-      "pred_time_val": 0.030939817428588867,
-      "fit_time_marginal": 1509.9893486499786,
-      "fit_order": 51
-    },
-    {
-      "model": "DeepAR\\63106_00123",
-      "score_test": -103.88943230831563,
-      "score_val": -83.27027502483033,
-      "pred_time_test": 0.05289959907531738,
-      "pred_time_val": 0.1356363296508789,
-      "fit_time_marginal": 604.8986682891846,
-      "fit_order": 219
-    },
-    {
-      "model": "DeepAR\\63106_00210",
-      "score_test": -104.85284922758261,
-      "score_val": -68.52424325631736,
-      "pred_time_test": 0.044341325759887695,
-      "pred_time_val": 0.12783193588256836,
-      "fit_time_marginal": 611.0369749069214,
-      "fit_order": 306
-    },
-    {
-      "model": "TemporalFusionTransformer\\8ac13_00063",
-      "score_test": -104.98129176775836,
-      "score_val": -52.88800824363085,
-      "pred_time_test": 0.10629081726074219,
-      "pred_time_val": 0.030480146408081055,
-      "fit_time_marginal": 1707.1094999313354,
-      "fit_order": 24
-    },
-    {
-      "model": "TemporalFusionTransformer\\8ac13_00122",
-      "score_test": -106.0452318192168,
-      "score_val": -54.45263857704674,
-      "pred_time_test": 0.07096123695373535,
-      "pred_time_val": 0.03934955596923828,
-      "fit_time_marginal": 2035.9951972961426,
-      "fit_order": 42
-    },
-    {
-      "model": "TemporalFusionTransformer\\8ac13_00330",
-      "score_test": -107.33056161366103,
-      "score_val": -75.46110398544562,
-      "pred_time_test": 0.07239890098571777,
-      "pred_time_val": 0.027926206588745117,
-      "fit_time_marginal": 31.679405689239502,
-      "fit_order": 95
-    },
-    {
-      "model": "DeepAR\\63106_00171",
-      "score_test": -108.2424580939909,
-      "score_val": -66.79659607722779,
-      "pred_time_test": 0.03124856948852539,
-      "pred_time_val": 0.10680913925170898,
-      "fit_time_marginal": 307.0429301261902,
-      "fit_order": 267
-    },
-    {
-      "model": "DeepAR\\63106_00167",
-      "score_test": -109.42476631417226,
-      "score_val": -70.27797241470054,
-      "pred_time_test": 0.06687641143798828,
-      "pred_time_val": 0.28475499153137207,
-      "fit_time_marginal": 2141.3818123340607,
-      "fit_order": 263
-    },
-    {
-      "model": "DeepAR\\63106_00024",
-      "score_test": -110.66216850571094,
-      "score_val": -83.91515086402549,
-      "pred_time_test": 0.0549311637878418,
-      "pred_time_val": 0.11070513725280762,
-      "fit_time_marginal": 389.30790519714355,
-      "fit_order": 120
-    },
-    {
-      "model": "DeepAR\\63106_00151",
-      "score_test": -111.72851032628859,
-      "score_val": -86.30701398136964,
-      "pred_time_test": 0.09214997291564941,
-      "pred_time_val": 0.30176258087158203,
-      "fit_time_marginal": 2271.7054007053375,
-      "fit_order": 247
-    },
-    {
-      "model": "DeepAR\\63106_00172",
-      "score_test": -112.27836249269772,
-      "score_val": -81.67449288979807,
-      "pred_time_test": 0.05588507652282715,
-      "pred_time_val": 0.15358853340148926,
-      "fit_time_marginal": 801.8728291988373,
-      "fit_order": 268
-    },
-    {
-      "model": "DeepAR\\63106_00133",
-      "score_test": -112.73247770509346,
-      "score_val": -76.49325928111787,
-      "pred_time_test": 0.06631255149841309,
-      "pred_time_val": 0.16331982612609863,
-      "fit_time_marginal": 720.3085386753082,
-      "fit_order": 229
-    },
-    {
-      "model": "TemporalFusionTransformer\\8ac13_00157",
-      "score_test": -112.7647564986613,
-      "score_val": -65.4212589916894,
-      "pred_time_test": 0.07176423072814941,
-      "pred_time_val": 0.028840303421020508,
-      "fit_time_marginal": 1928.767065525055,
-      "fit_order": 54
-    },
-    {
-      "model": "DeepAR\\63106_00130",
-      "score_test": -113.10292555705385,
-      "score_val": -87.59416529986899,
-      "pred_time_test": 0.048799991607666016,
-      "pred_time_val": 0.11771678924560547,
-      "fit_time_marginal": 625.6671578884125,
-      "fit_order": 226
-    },
-    {
-      "model": "DeepAR\\63106_00061",
-      "score_test": -113.25363960806821,
-      "score_val": -65.35783505910642,
-      "pred_time_test": 0.057417869567871094,
-      "pred_time_val": 0.20943975448608398,
-      "fit_time_marginal": 1194.6555724143982,
-      "fit_order": 157
-    },
-    {
-      "model": "DeepAR\\63106_00211",
-      "score_test": -114.36047214123026,
-      "score_val": -73.96038528987175,
-      "pred_time_test": 0.06903386116027832,
-      "pred_time_val": 0.18966960906982422,
-      "fit_time_marginal": 623.5284605026245,
-      "fit_order": 307
-    },
-    {
-      "model": "DeepAR\\63106_00053",
-      "score_test": -114.96934999481006,
-      "score_val": -68.05202340959752,
-      "pred_time_test": 0.04675889015197754,
-      "pred_time_val": 0.20545077323913574,
-      "fit_time_marginal": 986.2787499427795,
-      "fit_order": 149
-    },
-    {
-      "model": "DeepAR\\63106_00107",
-      "score_test": -115.62833999714596,
-      "score_val": -86.13724336236744,
-      "pred_time_test": 0.06967353820800781,
-      "pred_time_val": 0.13663578033447266,
-      "fit_time_marginal": 646.1950764656067,
-      "fit_order": 203
-    },
-    {
-      "model": "DeepAR\\63106_00051",
-      "score_test": -115.85551430559714,
-      "score_val": -84.86056231177567,
-      "pred_time_test": 0.05451250076293945,
-      "pred_time_val": 0.14860177040100098,
-      "fit_time_marginal": 744.2122085094452,
-      "fit_order": 147
-    },
-    {
-      "model": "DeepAR\\63106_00198",
-      "score_test": -116.76997214092093,
-      "score_val": -73.76310681294468,
-      "pred_time_test": 0.05834245681762695,
-      "pred_time_val": 0.13164925575256348,
-      "fit_time_marginal": 550.1770639419556,
-      "fit_order": 294
-    },
-    {
-      "model": "DeepAR\\63106_00104",
-      "score_test": -117.33271121719592,
-      "score_val": -87.8269022936055,
-      "pred_time_test": 0.05379486083984375,
-      "pred_time_val": 0.12566375732421875,
-      "fit_time_marginal": 530.8464498519897,
-      "fit_order": 200
-    },
-    {
-      "model": "DeepAR\\63106_00043",
-      "score_test": -118.17170196069301,
-      "score_val": -68.83168504891623,
-      "pred_time_test": 0.05258822441101074,
-      "pred_time_val": 0.15957236289978027,
-      "fit_time_marginal": 590.4805114269257,
-      "fit_order": 139
-    },
-    {
-      "model": "TemporalFusionTransformer\\8ac13_00086",
-      "score_test": -119.14079084429935,
-      "score_val": -50.01166904453073,
-      "pred_time_test": 0.07524609565734863,
-      "pred_time_val": 0.029458045959472656,
-      "fit_time_marginal": 1292.899486541748,
-      "fit_order": 31
-    },
-    {
-      "model": "DeepAR\\63106_00190",
-      "score_test": -119.39759801714364,
-      "score_val": -83.85082218550993,
-      "pred_time_test": 0.07210683822631836,
-      "pred_time_val": 0.19348406791687012,
-      "fit_time_marginal": 866.8679139614105,
-      "fit_order": 286
-    },
-    {
-      "model": "DeepAR\\63106_00140",
-      "score_test": -120.51803644360461,
-      "score_val": -78.0272864708753,
-      "pred_time_test": 0.06902599334716797,
-      "pred_time_val": 0.2422323226928711,
-      "fit_time_marginal": 1121.8477613925934,
-      "fit_order": 236
-    },
-    {
-      "model": "DeepAR\\63106_00008",
-      "score_test": -120.76606123144393,
-      "score_val": -69.97635680583566,
-      "pred_time_test": 0.04376339912414551,
-      "pred_time_val": 0.1765303611755371,
-      "fit_time_marginal": 836.0656797885895,
-      "fit_order": 104
-    },
-    {
-      "model": "TemporalFusionTransformer\\8ac13_00026",
-      "score_test": -121.01846295204537,
-      "score_val": -59.280436745049045,
-      "pred_time_test": 0.09528374671936035,
-      "pred_time_val": 0.031241893768310547,
-      "fit_time_marginal": 1622.9740316867828,
+      "model": "NPTSU02",
+      "score_test": -98.11186043054559,
+      "score_val": -128.4622794940551,
+      "pred_time_test": 2.4312593936920166,
+      "pred_time_val": 0.11850953102111816,
+      "fit_time_marginal": 0.5070056915283203,
       "fit_order": 14
     },
     {
-      "model": "TemporalFusionTransformer\\8ac13_00029",
-      "score_test": -122.39076809864665,
-      "score_val": -67.27714329770237,
-      "pred_time_test": 0.06099438667297363,
-      "pred_time_val": 0.031256914138793945,
-      "fit_time_marginal": 2022.1174399852753,
+      "model": "NPTSU01",
+      "score_test": -98.11186043054559,
+      "score_val": -128.4622794940551,
+      "pred_time_test": 0.1723494529724121,
+      "pred_time_val": 0.12973237037658691,
+      "fit_time_marginal": 0.5642924308776855,
+      "fit_order": 13
+    },
+    {
+      "model": "DirectTabularU03",
+      "score_test": -99.21351403539516,
+      "score_val": -79.74325074561219,
+      "pred_time_test": 0.1256849765777588,
+      "pred_time_val": 0.12604475021362305,
+      "fit_time_marginal": 3.221151113510132,
+      "fit_order": 9
+    },
+    {
+      "model": "DirectTabularU02",
+      "score_test": -99.21351403539516,
+      "score_val": -79.74325074561219,
+      "pred_time_test": 0.12067222595214844,
+      "pred_time_val": 0.12696576118469238,
+      "fit_time_marginal": 3.192986011505127,
+      "fit_order": 8
+    },
+    {
+      "model": "DirectTabularU01",
+      "score_test": -99.21351403539516,
+      "score_val": -79.74325074561219,
+      "pred_time_test": 0.11484694480895996,
+      "pred_time_val": 0.11417865753173828,
+      "fit_time_marginal": 3.181765556335449,
+      "fit_order": 7
+    },
+    {
+      "model": "WeightedEnsemble",
+      "score_test": -128.13185554196843,
+      "score_val": -46.5633217360621,
+      "pred_time_test": 1.4355952739715576,
+      "pred_time_val": 1.1912631446495652,
+      "fit_time_marginal": 5.905999999959022,
+      "fit_order": 31
+    },
+    {
+      "model": "DeepARU03",
+      "score_test": -130.802738428544,
+      "score_val": -81.8075228951686,
+      "pred_time_test": 0.08971500396728516,
+      "pred_time_val": 0.039745330810546875,
+      "fit_time_marginal": 111.93757200241089,
+      "fit_order": 30
+    },
+    {
+      "model": "DeepARU01",
+      "score_test": -132.2840426873572,
+      "score_val": -81.9213352062415,
+      "pred_time_test": 0.05132269859313965,
+      "pred_time_val": 0.03862142562866211,
+      "fit_time_marginal": 110.65592622756958,
+      "fit_order": 28
+    },
+    {
+      "model": "DynamicOptimizedThetaU03",
+      "score_test": -135.05269518260843,
+      "score_val": -70.12288446037917,
+      "pred_time_test": 2.090311288833618,
+      "pred_time_val": 1.0630052089691162,
+      "fit_time_marginal": 3.596891164779663,
+      "fit_order": 18
+    },
+    {
+      "model": "DynamicOptimizedThetaU02",
+      "score_test": -135.05269518260843,
+      "score_val": -70.12288446037917,
+      "pred_time_test": 0.9392373561859131,
+      "pred_time_val": 0.911616325378418,
+      "fit_time_marginal": 3.6579837799072266,
+      "fit_order": 17
+    },
+    {
+      "model": "DynamicOptimizedThetaU01",
+      "score_test": -135.05269518260843,
+      "score_val": -70.12288446037917,
+      "pred_time_test": 0.9746847152709961,
+      "pred_time_val": 1.0436792373657227,
+      "fit_time_marginal": 3.6132030487060547,
       "fit_order": 16
     },
     {
-      "model": "DeepAR\\63106_00201",
-      "score_test": -123.97557015938891,
-      "score_val": -85.05392650422826,
-      "pred_time_test": 0.0948028564453125,
-      "pred_time_val": 0.25072240829467773,
-      "fit_time_marginal": 1025.5008199214935,
-      "fit_order": 297
+      "model": "ThetaU03",
+      "score_test": -135.07499708908696,
+      "score_val": -70.13096927043486,
+      "pred_time_test": 0.5010638236999512,
+      "pred_time_val": 0.5694012641906738,
+      "fit_time_marginal": 1.9372243881225586,
+      "fit_order": 21
     },
     {
-      "model": "TemporalFusionTransformer\\8ac13_00094",
-      "score_test": -124.020437012804,
-      "score_val": -53.87190825742523,
-      "pred_time_test": 0.06305432319641113,
-      "pred_time_val": 0.029391050338745117,
-      "fit_time_marginal": 2034.009358406067,
-      "fit_order": 34
+      "model": "ThetaU02",
+      "score_test": -135.07499708908696,
+      "score_val": -70.13096927043486,
+      "pred_time_test": 3.950009822845459,
+      "pred_time_val": 0.6306352615356445,
+      "fit_time_marginal": 1.9281642436981201,
+      "fit_order": 20
     },
     {
-      "model": "TemporalFusionTransformer\\8ac13_00059",
-      "score_test": -124.0714050233354,
-      "score_val": -53.76333117177543,
-      "pred_time_test": 0.0764915943145752,
-      "pred_time_val": 0.03259706497192383,
-      "fit_time_marginal": 1802.0521256923676,
+      "model": "ThetaU01",
+      "score_test": -135.07499708908696,
+      "score_val": -70.13096927043486,
+      "pred_time_test": 0.5954442024230957,
+      "pred_time_val": 0.5950069427490234,
+      "fit_time_marginal": 1.9257779121398926,
+      "fit_order": 19
+    },
+    {
+      "model": "TemporalFusionTransformerU02",
+      "score_test": -136.27525538670005,
+      "score_val": -47.25867262507655,
+      "pred_time_test": 0.2398357391357422,
+      "pred_time_val": 0.012281417846679688,
+      "fit_time_marginal": 235.07590794563293,
+      "fit_order": 26
+    },
+    {
+      "model": "ETSU03",
+      "score_test": -137.29256505865976,
+      "score_val": -70.568691328553,
+      "pred_time_test": 0.9986844062805176,
+      "pred_time_val": 0.9563751220703125,
+      "fit_time_marginal": 3.8736724853515625,
+      "fit_order": 12
+    },
+    {
+      "model": "ETSU02",
+      "score_test": -137.29256505865976,
+      "score_val": -70.568691328553,
+      "pred_time_test": 4.363653898239136,
+      "pred_time_val": 0.9489028453826904,
+      "fit_time_marginal": 4.97578501701355,
+      "fit_order": 11
+    },
+    {
+      "model": "ETSU01",
+      "score_test": -137.29256505865976,
+      "score_val": -70.568691328553,
+      "pred_time_test": 0.9868643283843994,
+      "pred_time_val": 2.0598936080932617,
+      "fit_time_marginal": 8.170387029647827,
+      "fit_order": 10
+    },
+    {
+      "model": "AutoETSU03",
+      "score_test": -137.29256505865976,
+      "score_val": -70.568691328553,
+      "pred_time_test": 2.070358991622925,
+      "pred_time_val": 0.9406716823577881,
+      "fit_time_marginal": 3.843029022216797,
+      "fit_order": 24
+    },
+    {
+      "model": "AutoETSU02",
+      "score_test": -137.29256505865976,
+      "score_val": -70.568691328553,
+      "pred_time_test": 5.152730226516724,
+      "pred_time_val": 0.9304697513580322,
+      "fit_time_marginal": 3.85135555267334,
+      "fit_order": 23
+    },
+    {
+      "model": "AutoETSU01",
+      "score_test": -137.29256505865976,
+      "score_val": -70.568691328553,
+      "pred_time_test": 0.9688029289245605,
+      "pred_time_val": 0.9539945125579834,
+      "fit_time_marginal": 3.8317716121673584,
       "fit_order": 22
     },
     {
-      "model": "DeepAR\\63106_00202",
-      "score_test": -126.25010568723191,
-      "score_val": -94.93684901380732,
-      "pred_time_test": 0.05277276039123535,
-      "pred_time_val": 0.1269536018371582,
-      "fit_time_marginal": 470.7299470901489,
-      "fit_order": 298
+      "model": "TemporalFusionTransformerU03",
+      "score_test": -145.71335453657065,
+      "score_val": -51.03979641511441,
+      "pred_time_test": 0.06267857551574707,
+      "pred_time_val": 0.013412714004516602,
+      "fit_time_marginal": 236.83682465553284,
+      "fit_order": 27
+    },
+    {
+      "model": "DeepARU02",
+      "score_test": -155.63947537314914,
+      "score_val": -72.1478610026742,
+      "pred_time_test": 0.06707143783569336,
+      "pred_time_val": 0.03775954246520996,
+      "fit_time_marginal": 140.91234016418457,
+      "fit_order": 29
+    },
+    {
+      "model": "SeasonalNaiveU03",
+      "score_test": -159.3715335757478,
+      "score_val": -107.56757109120478,
+      "pred_time_test": 2.402334690093994,
+      "pred_time_val": 0.01447296142578125,
+      "fit_time_marginal": 0.09909367561340332,
+      "fit_order": 3
+    },
+    {
+      "model": "SeasonalNaiveU02",
+      "score_test": -159.3715335757478,
+      "score_val": -107.56757109120478,
+      "pred_time_test": 2.4867708683013916,
+      "pred_time_val": 0.01627945899963379,
+      "fit_time_marginal": 2.3926572799682617,
+      "fit_order": 2
+    },
+    {
+      "model": "SeasonalNaiveU01",
+      "score_test": -159.3715335757478,
+      "score_val": -107.56757109120478,
+      "pred_time_test": 0.01508951187133789,
+      "pred_time_val": 2.3059628009796143,
+      "fit_time_marginal": 9.96397876739502,
+      "fit_order": 1
+    },
+    {
+      "model": "TemporalFusionTransformerU01",
+      "score_test": -164.5739806130817,
+      "score_val": -53.759908587861254,
+      "pred_time_test": 0.11036062240600586,
+      "pred_time_val": 0.01694774627685547,
+      "fit_time_marginal": 234.07021737098694,
+      "fit_order": 25
     }
   ]
 }
