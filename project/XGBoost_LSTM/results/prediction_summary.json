@@ -1,75 +1,75 @@
 {
   "city": "Delhi",
-  "lookback_days": 45,
+  "lookback_days": 14,
   "forecast_horizon_days": 7,
   "validation_metrics": {
-    "MAE": 32.750077704496164,
-    "RMSE": 44.39724664407205
+    "MAE": 30.993807040223288,
+    "RMSE": 42.04428885839761
   },
   "nowcast": {
     "last_actual_aqi": 283.0,
-    "next_day_aqi": 279.42364501953125,
-    "delta_next_day": -3.57635498046875,
-    "trend": "하락",
-    "current_grade": "매우 나쁨",
-    "current_grade_color": "#8E44AD",
-    "current_health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다."
+    "next_day_aqi": 306.10418701171875,
+    "delta_next_day": 23.10418701171875,
+    "trend": "상승",
+    "current_grade": "위험",
+    "current_grade_color": "#7F1D1D",
+    "current_health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요."
   },
   "next_predictions": [
     {
       "date": "2025-01-01",
-      "predicted_aqi": 279.42364501953125,
-      "grade": "매우 나쁨",
-      "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
-      "grade_color": "#8E44AD"
+      "predicted_aqi": 306.10418701171875,
+      "grade": "위험",
+      "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
+      "grade_color": "#7F1D1D"
     },
     {
       "date": "2025-01-02",
-      "predicted_aqi": 268.4303283691406,
+      "predicted_aqi": 299.7444152832031,
       "grade": "매우 나쁨",
       "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
       "grade_color": "#8E44AD"
     },
     {
       "date": "2025-01-03",
-      "predicted_aqi": 276.7083740234375,
-      "grade": "매우 나쁨",
-      "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
-      "grade_color": "#8E44AD"
+      "predicted_aqi": 303.8978271484375,
+      "grade": "위험",
+      "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
+      "grade_color": "#7F1D1D"
     },
     {
       "date": "2025-01-04",
-      "predicted_aqi": 280.7412109375,
-      "grade": "매우 나쁨",
-      "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
-      "grade_color": "#8E44AD"
+      "predicted_aqi": 309.1031188964844,
+      "grade": "위험",
+      "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
+      "grade_color": "#7F1D1D"
     },
     {
       "date": "2025-01-05",
-      "predicted_aqi": 279.9848327636719,
-      "grade": "매우 나쁨",
-      "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
-      "grade_color": "#8E44AD"
+      "predicted_aqi": 326.0218505859375,
+      "grade": "위험",
+      "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
+      "grade_color": "#7F1D1D"
     },
     {
       "date": "2025-01-06",
-      "predicted_aqi": 290.3851318359375,
-      "grade": "매우 나쁨",
-      "health_advice": "외출을 최소화하고 공기청정기 사용을 권장합니다.",
-      "grade_color": "#8E44AD"
+      "predicted_aqi": 357.2816162109375,
+      "grade": "위험",
+      "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
+      "grade_color": "#7F1D1D"
     },
     {
       "date": "2025-01-07",
-      "predicted_aqi": 309.3737487792969,
+      "predicted_aqi": 332.184326171875,
       "grade": "위험",
       "health_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요.",
       "grade_color": "#7F1D1D"
     }
   ],
   "forecast_stats": {
-    "mean": 283.5781816755022,
-    "min": 268.4303283691406,
-    "max": 309.3737487792969,
+    "mean": 319.1910487583705,
+    "min": 299.7444152832031,
+    "max": 357.2816162109375,
     "peak_grade": "위험",
     "peak_grade_color": "#7F1D1D",
     "peak_advice": "가급적 외출을 피하고 건강 이상 시 즉시 휴식하세요."
@@ -557,10 +557,10 @@
     }
   ],
   "artifacts": {
-    "forecast_csv": "C:\\Users\\504\\3D Objects\\project\\test\\results\\next_aqi_forecast.csv",
-    "forecast_png": "C:\\Users\\504\\3D Objects\\project\\test\\results\\next_aqi_forecast.png"
+    "forecast_csv": "C:\\Users\\504\\3D Objects\\project\\XGBoost_LSTM\\results\\next_aqi_forecast.csv",
+    "forecast_png": "C:\\Users\\504\\3D Objects\\project\\XGBoost_LSTM\\results\\next_aqi_forecast.png"
   },
-  "interpretation": "내일 AQI는 최근 대비 -3.6p (하락)로 예측됩니다. 예측 기간 중 최고 위험 구간은 '위험' 수준입니다. 밴드(±RMSE)가 넓은 날짜는 변동성이 큰 구간으로 해석하세요.",
+  "interpretation": "내일 AQI는 최근 대비 +23.1p (상승)로 예측됩니다. 예측 기간 중 최고 위험 구간은 '위험' 수준입니다. 밴드(±RMSE)가 넓은 날짜는 변동성이 큰 구간으로 해석하세요.",
   "aqi_bands": [
     {
       "min": 0,
